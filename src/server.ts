@@ -1,13 +1,13 @@
-import express from "express"
+import express from "express";
 
-const app = express()
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.get("/", (req, res) => {
-  const { name } = req.body
+  const { name } = req.body;
 
-  return res.json({ message: "Ola mundo" })
-})
+  return res.json({ message: "Ola mundo" });
+});
 
-app.listen(3333, () => console.log("Server is listening 3333"))
+app.listen(3333, () => console.log("Server is listening 3333"));
