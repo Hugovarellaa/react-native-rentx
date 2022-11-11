@@ -1,17 +1,11 @@
-import { ReactNode } from 'react';
-import { Text } from 'react-native';
 
-import { Container } from './styles';
+import { Container, Title } from './styles';
 
-interface HomeProps {
-  children: ReactNode;
-}
 
-export function Home({ children }: HomeProps) {
+export function Home() {
   return (
     <Container>
-      <Text>Home</Text>
-      {children}
+      <Title>Home</Title>
     </Container>
   );
 }
