@@ -2,17 +2,33 @@ import { About, Brand, CarContainer, CarImage, Details, Name, Period, Price, Ren
 
 import GasolineSVG from "../../assets/gasoline.svg";
 
-export function Car() {
+interface CarData {
+  brand: string
+  name: string
+  rent: {
+    period: string
+    price: number
+  }
+  thumbnail: string
+}
+
+interface CarProps {
+  data: CarData
+}
+
+export function Car({ data }: CarProps) {
   return (
     <CarContainer>
       <Details>
-        <Brand>AUDI</Brand>
-        <Name>RS 5 Coupé</Name>
+        <Brand>{data.brand}</Brand>
+        <Name>{data.name}</Name>
 
         <About>
           <Rent>
-            <Period>Ao dia</Period>
-            <Price>R$ 120</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>
+              {`R$ ${data.rent.price}`}
+            </Price>
           </Rent>
 
           <Type>
@@ -21,7 +37,7 @@ export function Car() {
         </About>
       </Details>
 
-      <CarImage source={{ uri: '' }} />
+      <CarImage source={{ uri: data.thumbnail }} resizeMode="contain" />
     </CarContainer>
   )
 }
