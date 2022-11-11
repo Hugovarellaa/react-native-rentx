@@ -17,7 +17,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react-native": "~0.70.6"
+    "@types/react-native": "~0.70.6",
+    "eslint": "^8.27.0",
+    "eslint-config-universe": "^11.1.1",
+    "prettier": "^2.7.1"
   },
   "private": true
 }
