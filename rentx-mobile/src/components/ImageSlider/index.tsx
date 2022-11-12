@@ -1,5 +1,5 @@
 import {
-  Brand, CarImage,
+  About, Brand, CarImage,
   CarImages,
   CarImageWrapper, Content, Description, Details, ImageIndex,
   ImageIndexes,
@@ -46,7 +46,13 @@ export function ImageSlider({ imagesUrl }: Props) {
           </Rent>
         </Details>
 
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
+        </About>
+
       </Content>
+
+
 
     </ImageSliderContainer >
   )
