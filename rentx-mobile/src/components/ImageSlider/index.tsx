@@ -1,4 +1,11 @@
-import { CarImage, CarImages, CarImageWrapper, ImageIndex, ImageIndexes, ImageSliderContainer } from './styles'
+import {
+  Brand, CarImage,
+  CarImages,
+  CarImageWrapper, Content, Description, Details, ImageIndex,
+  ImageIndexes,
+  ImageSliderContainer, Name, Period,
+  Price, Rent
+} from './styles'
 
 interface Props {
   imagesUrl: string[]
@@ -24,6 +31,24 @@ export function ImageSlider({ imagesUrl }: Props) {
         </CarImageWrapper>
       </CarImages>
 
-    </ImageSliderContainer>
+
+      <Content>
+        <Details>
+
+          <Description>
+            <Brand>Lamborghini</Brand>
+            <Name>Huracan</Name>
+          </Description>
+
+          <Rent>
+            <Period>AO DIA</Period>
+            <Price>R$ 580</Price>
+          </Rent>
+        </Details>
+
+      </Content>
+
+    </ImageSliderContainer >
   )
 }
+
