@@ -1,7 +1,8 @@
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
 import {
-  About, Brand,
+  About,
+  Brand,
   CarDetailsContainer,
   CarImage,
   Content,
