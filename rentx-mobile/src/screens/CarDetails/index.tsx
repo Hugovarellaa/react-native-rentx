@@ -26,9 +26,7 @@ import {
   Rent
 } from "./styles"
 
-interface CarDetailsProps {}
-
-export function CarDetails({}: CarDetailsProps) {
+export function CarDetails() {
   return (
     <CarDetailsContainer>
       <Header>

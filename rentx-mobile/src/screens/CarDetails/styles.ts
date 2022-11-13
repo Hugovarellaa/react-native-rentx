@@ -4,6 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 
 export const CarDetailsContainer = styled.View`
+  flex: 1;
   background-color: ${({ theme }) => theme.colors.background_secondary};
 `
 export const Header = styled.View`
@@ -91,7 +92,7 @@ export const Accessories = styled.View`
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 16px;
+  margin-top: 10px;
 `
 export const Footer = styled.View`
   width: 100%;
