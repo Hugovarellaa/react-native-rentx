@@ -1,6 +1,18 @@
 import { BackButton } from "../../components/BackButton"
 import { ImageSlider } from "../../components/ImageSlider"
-import { CarDetailsContainer, CarImage, Header } from "./styles"
+import {
+  About, Brand,
+  CarDetailsContainer,
+  CarImage,
+  Content,
+  Description,
+  Details,
+  Header,
+  Name,
+  Period,
+  Price,
+  Rent
+} from "./styles"
 
 interface CarDetailsProps {}
 
@@ -18,6 +30,25 @@ export function CarDetails({}: CarDetailsProps) {
           ]}
         />
       </CarImage>
+
+      <Content>
+        <Details>
+          <Description>
+            <Brand>Audi </Brand>
+            <Name>RS 5 Coupé</Name>
+          </Description>
+
+          <Rent>
+            <Period>Ao dia</Period>
+            <Price>R$ 580</Price>
+          </Rent>
+        </Details>
+
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É
+          um belíssimo carro para quem gosta de acelerar.
+        </About>
+      </Content>
     </CarDetailsContainer>
   )
 }
