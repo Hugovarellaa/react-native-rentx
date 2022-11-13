@@ -11,7 +11,10 @@
     "lint:fix": "eslint src --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@expo-google-fonts/archivo": "^0.2.2",
+    "@expo-google-fonts/inter": "^0.2.2",
     "expo": "~47.0.3",
+    "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.4",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",

@@ -1,13 +1,17 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { Home } from './src/screens/Home';
-import theme from './src/styles/theme';
+import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from "@expo-google-fonts/archivo"
+import { Inter_400Regular, Inter_500Medium, useFonts } from "@expo-google-fonts/inter"
+import { ThemeProvider } from "styled-components"
+import { Loading } from "./src/components/Loading"
+import { Home } from "./src/screens/Home"
+import theme from "./src/styles/theme"
 
 export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Home />
-    </ThemeProvider>
-  );
+  const [fontsLoading] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Archivo_400Regular,
+    Archivo_500Medium,
+    Archivo_600SemiBold
+  })
+  return <ThemeProvider theme={theme}>{fontsLoading ? <Home /> : <Loading />}</ThemeProvider>
 }
-
