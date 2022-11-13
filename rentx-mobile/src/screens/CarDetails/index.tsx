@@ -1,13 +1,24 @@
+import accelerationSvg from "../../assets/acceleration.svg"
+import exchangeSvg from "../../assets/exchange.svg"
+import forceSvg from "../../assets/force.svg"
+import gasolineSvg from "../../assets/gasoline.svg"
+import peopleSvg from "../../assets/people.svg"
+import speedSvg from "../../assets/speed.svg"
+import { Accessory } from "../../components/Accessory"
 import { BackButton } from "../../components/BackButton"
+import { Button } from "../../components/Button"
 import { ImageSlider } from "../../components/ImageSlider"
+
 import {
   About,
+  Accessories,
   Brand,
   CarDetailsContainer,
   CarImage,
   Content,
   Description,
   Details,
+  Footer,
   Header,
   Name,
   Period,
@@ -27,7 +38,7 @@ export function CarDetails({}: CarDetailsProps) {
       <CarImage>
         <ImageSlider
           imagesUrl={[
-            "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/ff5a98a2-fd1e-4585-84a9-d91a5947d7d0/61f4cdfb-46ba-4ae9-8c08-3414e91094af.png"
+            "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_gw/model_chooser/mobile/Huracan_Evo_cc-arancio_xanto-Aesir_20_Diamond_Cut-black_caliper-sceneplate_env.png"
           ]}
         />
       </CarImage>
@@ -45,11 +56,24 @@ export function CarDetails({}: CarDetailsProps) {
           </Rent>
         </Details>
 
+        <Accessories>
+          <Accessory name="380km/h" icon={speedSvg} />
+          <Accessory name="3.2s" icon={accelerationSvg} />
+          <Accessory name="800 HP" icon={forceSvg} />
+          <Accessory name="Gasoline" icon={gasolineSvg} />
+          <Accessory name="Auto" icon={exchangeSvg} />
+          <Accessory name="2 pessoas" icon={peopleSvg} />
+        </Accessories>
+
         <About>
           Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É
           um belíssimo carro para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Escolher período do aluguel" />
+      </Footer>
     </CarDetailsContainer>
   )
 }
