@@ -54,6 +54,7 @@ export function CarDetails() {
           </Rent>
         </Details>
 
+        {/* Envolver os accessory por  um wrapper para quebra no dispositivo físico */}
         <Accessories>
           <Accessory name="380km/h" icon={speedSvg} />
           <Accessory name="3.2s" icon={accelerationSvg} />
