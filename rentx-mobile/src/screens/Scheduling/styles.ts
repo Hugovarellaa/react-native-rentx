@@ -1,3 +1,4 @@
+import { ScrollView } from "react-native"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import { RFValue } from "react-native-responsive-fontsize"
 import styled, { css } from "styled-components/native"
@@ -59,4 +60,14 @@ export const DateValue = styled.Text<DateValueProps>`
       border-bottom-color: ${({ theme }) => theme.colors.text};
       padding-bottom: 5px;
     `}
+`
+export const Content = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    paddingBottom: 24
+  },
+  showsVerticalScrollIndicator: false
+})``
+
+export const Footer = styled.View`
+  padding: 24px;
 `
