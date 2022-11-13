@@ -20,7 +20,11 @@ export function Car() {
         </About>
       </Details>
 
-      <CarImage source={{ uri: "" }} />
+      <CarImage
+        source={{
+          uri: "https://www.webmotors.com.br/imagens/prod/348928/PORSCHE_PANAMERA_2.9_V6_EHYBRID_4_PLATINUM_EDITION_PDK_34892815305718989.webp?s=fill&w=130&h=97&q=70&t=true)"
+        }}
+      />
     </CarContainer>
   )
 }
