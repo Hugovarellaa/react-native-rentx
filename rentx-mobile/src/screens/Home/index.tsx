@@ -1,8 +1,9 @@
-import { StatusBar, Text } from "react-native"
+import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { Header, HeaderContent, HomeContainer, TotalCar } from "./styles"
 
 import Logo from "../../assets/logo.svg"
+import { Car } from "../../components/Car"
 
 export function Home() {
   return (
@@ -14,7 +15,8 @@ export function Home() {
           <TotalCar>Total de 12 Carros</TotalCar>
         </HeaderContent>
       </Header>
-      <Text>Home</Text>
+
+      <Car />
     </HomeContainer>
   )
 }
