@@ -1,5 +1,3 @@
 {
-  "eslintConfig": {
-    "extends": "universe/native"
-  }
+  "extends": ["@react-native-community", "eslint-config-prettier", "plugin:react/jsx-runtime"]
 }
