@@ -38,6 +38,7 @@ export function Car({ data }: CarProps) {
         source={{
           uri: data.thumbnail
         }}
+        resizeMode="contain"
       />
     </CarContainer>
   )
