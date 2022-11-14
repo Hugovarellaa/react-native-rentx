@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons"
+import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { useTheme } from "styled-components"
 import accelerationSvg from "../../assets/acceleration.svg"
@@ -33,6 +34,8 @@ export function SchedulingDetails() {
   const theme = useTheme()
   return (
     <CarDetailsContainer>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+
       <Header>
         <BackButton onPress={() => { }} />
       </Header>
@@ -106,7 +109,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success}/>
+        <Button title="Alugar agora" color={theme.colors.success} />
       </Footer>
     </CarDetailsContainer>
   )

@@ -2,7 +2,6 @@ import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { CarList, Header, HeaderContent, HomeContainer, TotalCar } from "./styles"
 
-//
 
 import Logo from "../../assets/logo.svg"
 import { Car } from "../../components/Car"
