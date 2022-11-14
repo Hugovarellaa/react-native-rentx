@@ -16,8 +16,8 @@ export function StackRoutes() {
       <Screen name="Home" component={Home} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
-      <Screen name="SchedulingComplete" component={SchedulingDetails} />
-      <Screen name="SchedulingDetails" component={SchedulingComplete} />
+      <Screen name="SchedulingDetails" component={SchedulingDetails} />
+      <Screen name="SchedulingComplete" component={SchedulingComplete} />
     </Navigator>
   )
 }

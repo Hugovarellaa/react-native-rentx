@@ -12,7 +12,7 @@ export const ButtonContainer = styled(TouchableOpacity)<ButtonProps>`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ theme, color }) => (color ? color : theme.colors.main)};
+  background-color: ${({  color }) => color};
 `
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_500};
