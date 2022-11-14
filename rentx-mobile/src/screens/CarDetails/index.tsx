@@ -1,3 +1,5 @@
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
 import accelerationSvg from "../../assets/acceleration.svg"
 import exchangeSvg from "../../assets/exchange.svg"
 import forceSvg from "../../assets/force.svg"
@@ -27,10 +29,21 @@ import {
 } from "./styles"
 
 export function CarDetails() {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+
+  function handleBackHome() {
+    navigation.navigate('Home')
+  }
+
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling')
+  }
+
   return (
     <CarDetailsContainer>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBackHome} />
       </Header>
 
       <CarImage>
@@ -71,7 +84,7 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Escolher período do aluguel" />
+        <Button title="Escolher período do aluguel" onPress={handleConfirmRental} />
       </Footer>
     </CarDetailsContainer>
   )

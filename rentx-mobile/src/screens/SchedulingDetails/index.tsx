@@ -1,4 +1,7 @@
 import { Feather } from "@expo/vector-icons"
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
+import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { useTheme } from "styled-components"
 import accelerationSvg from "../../assets/acceleration.svg"
@@ -29,12 +32,27 @@ import {
   RentalPriceTotal, RentPeriod
 } from "./styles"
 
+
 export function SchedulingDetails() {
   const theme = useTheme()
+
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+
+  function handleBackHome() {
+    navigation.navigate('Scheduling')
+  }
+
+  function handleConfirmRental() {
+    navigation.navigate('SchedulingComplete')
+  }
+
   return (
     <CarDetailsContainer>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+
       <Header>
-        <BackButton onPress={() => { }} />
+        <BackButton onPress={handleBackHome} />
       </Header>
 
       <CarImage>
@@ -106,7 +124,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success}/>
+        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} />
       </Footer>
     </CarDetailsContainer>
   )

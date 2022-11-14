@@ -1,23 +1,43 @@
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
 import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { CarList, Header, HeaderContent, HomeContainer, TotalCar } from "./styles"
 
-//
 
+import { useEffect, useState } from "react"
 import Logo from "../../assets/logo.svg"
 import { Car } from "../../components/Car"
+import { Loading } from "../../components/Loading"
+import { CarDTO } from "../../dtos/CarDTO"
+import { api } from "../../services/axios"
 
 export function Home() {
-  const carOne = {
-    brand: "Audi",
-    name: "RS 5 Coupé",
-    rent: {
-      period: "AO DIA",
-      price: 120
-    },
-    thumbnail:
-      "https://platform.cstatic-images.com/xlarge/in/v2/stock_photos/ff5a98a2-fd1e-4585-84a9-d91a5947d7d0/61f4cdfb-46ba-4ae9-8c08-3414e91094af.png"
+  const [cars, setCars] = useState<CarDTO[]>([])
+  const [loading, setLoading] = useState(true)
+
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+
+
+  function handleCarDetails() {
+    navigation.navigate('CarDetails')
   }
+
+
+
+  useEffect(() => {
+    async function fetchCar() {
+      try {
+        const response = await api.get('/cars')
+        setCars(response.data)
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchCar()
+  }, [])
 
   return (
     <HomeContainer>
@@ -29,11 +49,17 @@ export function Home() {
         </HeaderContent>
       </Header>
 
-      <CarList
-        data={[1, 2, 3, 4, 5, 6, 7]}
-        keyExtractor={(item) => String(item)}
-        renderItem={() => <Car data={carOne} />}
-      />
+      {
+        loading
+          ? <Loading />
+          : <CarList
+            data={cars}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => <Car data={item} onPress={handleCarDetails} />}
+        />
+      }
+
+
     </HomeContainer>
   )
 }

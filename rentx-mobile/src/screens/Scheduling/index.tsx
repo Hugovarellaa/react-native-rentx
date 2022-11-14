@@ -13,17 +13,30 @@ import {
   Title
 } from "./styles"
 
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
 import ArrowSVG from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
 import { Calendar } from "../../components/Calendar"
 
 export function Scheduling() {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+
+  function handleBackHome (){
+    navigation.navigate('CarDetails')
+  }
+
+  function handleConfirmRental (){
+    navigation.navigate('SchedulingDetails')
+  }
+
   const theme = useTheme()
   return (
     <SchedulingContainer>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
       <Header>
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleBackHome} color={theme.colors.shape} />
 
         <Title>
           Escolha uma {"\n"}data de início e {"\n"}fim do aluguel
@@ -49,7 +62,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirma" />
+        <Button title="Confirma" onPress={handleConfirmRental}/>
       </Footer>
     </SchedulingContainer>
   )
