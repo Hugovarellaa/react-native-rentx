@@ -1,7 +1,9 @@
+import { TouchableOpacity } from 'react-native';
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
-export const ConfirmButtonContainer = styled.View`
+
+export const ConfirmButtonContainer = styled(TouchableOpacity)`
   width: 80px;
   height: 56px;
 

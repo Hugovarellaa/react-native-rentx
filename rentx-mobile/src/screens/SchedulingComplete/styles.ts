@@ -29,3 +29,8 @@ export const Message = styled.Text`
   text-align: center;
   margin-top: 16px;
 `
+export const Footer = styled.View`
+  width: 100%;
+  align-items: center;
+  margin: 80px 0;
+`
