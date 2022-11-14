@@ -16,7 +16,9 @@ export default {
     success: "#03B252",
 
     shape: "#E1E1E8",
-    shape_dark: "#29292E"
+    shape_dark: "#29292E",
+
+    white: "#ffffff"
   } as const,
   fonts: {
     primary_400: "Inter_400Regular",
