@@ -13,13 +13,15 @@ import {
   Title
 } from "./styles"
 
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
 import ArrowSVG from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
 import { Calendar } from "../../components/Calendar"
 
 export function Scheduling() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
 
   function handleBackHome (){
     navigation.navigate('CarDetails')

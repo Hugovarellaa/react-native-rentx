@@ -5,7 +5,7 @@ import { LoadingContainer } from "./styles"
 export function Loading() {
   return (
     <LoadingContainer>
-      <ActivityIndicator color={theme.colors.success} />
+      <ActivityIndicator color={theme.colors.main} />
     </LoadingContainer>
   )
 }

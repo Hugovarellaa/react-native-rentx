@@ -1,5 +1,6 @@
 import { Feather } from "@expo/vector-icons"
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
 import { StatusBar } from "react-native"
 import { RFValue } from "react-native-responsive-fontsize"
 import { useTheme } from "styled-components"
@@ -35,13 +36,14 @@ import {
 export function SchedulingDetails() {
   const theme = useTheme()
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
-  function handleBackHome (){
+
+  function handleBackHome() {
     navigation.navigate('Scheduling')
   }
 
-  function handleConfirmRental (){
+  function handleConfirmRental() {
     navigation.navigate('SchedulingComplete')
   }
 
@@ -122,7 +124,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental}/>
+        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} />
       </Footer>
     </CarDetailsContainer>
   )

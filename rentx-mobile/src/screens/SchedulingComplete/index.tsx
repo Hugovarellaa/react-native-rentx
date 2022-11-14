@@ -1,4 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
+
 import { StatusBar, useWindowDimensions } from "react-native";
 import DoneSvg from "../../assets/done.svg";
 import BrandSvg from "../../assets/logo_background_gray.svg";
@@ -7,7 +8,8 @@ import { Content, Footer, Message, SchedulingCompleteContainer, Title } from "./
 
 export function SchedulingComplete() {
   const { width } = useWindowDimensions()
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
 
   function handleConfirmRental (){
     navigation.navigate('Home')

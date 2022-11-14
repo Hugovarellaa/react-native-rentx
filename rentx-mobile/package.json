@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "lint:run": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "api": "json-server server.json --host: 192.168.1.7 --port 3333 --delay 700"
+    "api": "json-server ./src/server.json --host 127.0.0.1 --port 3333 --delay 700"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.2",
@@ -34,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@react-native-community/eslint-config": "^3.2.0",
+    "@types/axios": "^0.14.0",
     "@types/react-native": "~0.70.6",
     "@types/styled-components-react-native": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",

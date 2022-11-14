@@ -1,4 +1,5 @@
-import { useNavigation } from "@react-navigation/native"
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
+
 import accelerationSvg from "../../assets/acceleration.svg"
 import exchangeSvg from "../../assets/exchange.svg"
 import forceSvg from "../../assets/force.svg"
@@ -28,13 +29,14 @@ import {
 } from "./styles"
 
 export function CarDetails() {
-  const navigation = useNavigation()
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
-  function handleBackHome (){
+
+  function handleBackHome() {
     navigation.navigate('Home')
   }
 
-  function handleConfirmRental (){
+  function handleConfirmRental() {
     navigation.navigate('Scheduling')
   }
 
