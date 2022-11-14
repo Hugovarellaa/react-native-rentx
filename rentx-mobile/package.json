@@ -8,7 +8,8 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint:run": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "api": "json-server server.json --host: 192.168.1.7 --port 3333 --delay 700"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.2",
@@ -19,6 +20,7 @@
     "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.4",
     "expo-status-bar": "~1.4.2",
+    "json-server": "^0.17.1",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-calendars": "^1.1291.1",
