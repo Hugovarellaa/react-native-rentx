@@ -1,11 +1,11 @@
 import { NavigationProp, ParamListBase, useNavigation, useRoute } from "@react-navigation/native"
 
-import speedSvg from "../../assets/speed.svg"
 import { Accessory } from "../../components/Accessory"
 import { BackButton } from "../../components/BackButton"
 import { Button } from "../../components/Button"
 import { ImageSlider } from "../../components/ImageSlider"
 import { CarDTO } from "../../dtos/CarDTO"
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon"
 
 import {
   About,
@@ -71,7 +71,7 @@ export function CarDetails() {
 
           {
             car.accessories.map(accessory => (
-              <Accessory key={accessory.type} name={accessory.name} icon={speedSvg} />
+              <Accessory key={accessory.type} name={accessory.name} icon={getAccessoryIcon(accessory.type)} />
             ))
           }
         </Accessories>
