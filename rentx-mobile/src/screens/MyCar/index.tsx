@@ -1,29 +1,63 @@
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { useTheme } from "styled-components";
+import { BackButton } from "../../components/BackButton";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/axios";
-import { MyCarContainer } from "./styles";
+
+import { Appointments, AppointmentsQuantity, AppointmentsTitle, Content, Header, MyCarContainer, SubTitle, Title } from "./styles";
+
+
 
 export function MyCar() {
   const [cars, setCars] = useState<CarDTO[]>([])
   const [loading, setLoading] = useState(true)
 
+  const theme = useTheme()
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+
+  function handleGoBack() {
+    navigation.goBack()
+  }
 
   useEffect(() => {
-    async function fetchCar(){
+    async function fetchCar() {
       try {
         const response = await api.get(`/schedules_byuser?user_id=1`)
         console.log(response.data)
         setCars(response.data)
-      }catch (error){
+      } catch (error) {
         console.log(error)
-      }finally {
+      } finally {
         setLoading(false)
       }
     }
     fetchCar()
-   }, [])
+  }, [])
 
   return (
-    <MyCarContainer />
+    <MyCarContainer >
+      <Header>
+        <BackButton onPress={handleGoBack} color={theme.colors.shape} />
+
+        <Title>
+          Seus agendamentos,{"\n"}
+          estão aqui.
+        </Title>
+        <SubTitle>
+          Conforto, segurança e praticidade.
+        </SubTitle>
+
+      </Header>
+
+      <Content>
+        <Appointments>
+          <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+          <AppointmentsQuantity>05</AppointmentsQuantity>
+        </Appointments>
+
+      </Content>
+    </MyCarContainer>
   )
 }
