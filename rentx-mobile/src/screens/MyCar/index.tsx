@@ -1,16 +1,22 @@
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { FlatList } from "react-native";
 import { useTheme } from "styled-components";
 import { BackButton } from "../../components/BackButton";
+import { Car } from "../../components/Car";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/axios";
 
 import { Appointments, AppointmentsQuantity, AppointmentsTitle, Content, Header, MyCarContainer, SubTitle, Title } from "./styles";
 
-
+interface CarProps {
+  id: string
+  car: CarDTO;
+  user_id: string
+}
 
 export function MyCar() {
-  const [cars, setCars] = useState<CarDTO[]>([])
+  const [cars, setCars] = useState<CarProps[]>([])
   const [loading, setLoading] = useState(true)
 
   const theme = useTheme()
@@ -57,6 +63,12 @@ export function MyCar() {
           <AppointmentsQuantity>05</AppointmentsQuantity>
         </Appointments>
 
+        <FlatList
+          data={cars}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item  => item.id}
+          renderItem={({ item }) => <Car data={item.car} />}
+        />
       </Content>
     </MyCarContainer>
   )
