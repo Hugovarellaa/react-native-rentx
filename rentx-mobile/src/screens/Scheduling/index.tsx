@@ -15,12 +15,17 @@ import {
 
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
 
+import { useState } from "react"
 import ArrowSVG from "../../assets/arrow.svg"
 import { Button } from "../../components/Button"
-import { Calendar } from "../../components/Calendar"
+import { Calendar, DayProps, generateInterval, MarkedDatesProps } from "../../components/Calendar"
 
 export function Scheduling() {
+  const [lastSelectedDate , setLastSelectedDate] = useState<DayProps>({} as DayProps )
+  const [markedDates, setMarkedDates] = useState<MarkedDatesProps>({} as MarkedDatesProps)
+
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const theme = useTheme()
 
 
   function handleBackHome (){
@@ -31,7 +36,21 @@ export function Scheduling() {
     navigation.navigate('SchedulingDetails')
   }
 
-  const theme = useTheme()
+  function handleChangeDate (date: DayProps){
+    let start  = !lastSelectedDate.timestamp ? date : lastSelectedDate
+    let end = date
+
+    if(start.timestamp > end.timestamp){
+      start = end
+      end = start
+    }
+
+    setLastSelectedDate(end)
+     const interval = generateInterval(start , end)
+     setMarkedDates(interval)
+  }
+
+
   return (
     <SchedulingContainer>
       <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -58,7 +77,7 @@ export function Scheduling() {
       </Header>
 
       <Content>
-        <Calendar />
+        <Calendar markedDates={markedDates} onDayPress={handleChangeDate}/>
       </Content>
 
       <Footer>
