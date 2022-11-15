@@ -33,18 +33,18 @@ export function CarDetails() {
   const route = useRoute()
   const { car } = route.params as Params
 
-  function handleBackHome() {
-    navigation.navigate('Home')
+  function handleGoBack() {
+    navigation.goBack()
   }
 
   function handleConfirmRental() {
-    navigation.navigate('Scheduling')
+    navigation.navigate('Scheduling', {car})
   }
 
   return (
     <CarDetailsContainer>
       <Header>
-        <BackButton onPress={handleBackHome} />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImage>

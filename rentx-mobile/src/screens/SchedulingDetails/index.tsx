@@ -39,8 +39,8 @@ export function SchedulingDetails() {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
 
-  function handleBackHome() {
-    navigation.navigate('Scheduling')
+  function handleGoBack() {
+    navigation.goBack()
   }
 
   function handleConfirmRental() {
@@ -52,7 +52,7 @@ export function SchedulingDetails() {
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
       <Header>
-        <BackButton onPress={handleBackHome} />
+        <BackButton onPress={handleGoBack} />
       </Header>
 
       <CarImage>
