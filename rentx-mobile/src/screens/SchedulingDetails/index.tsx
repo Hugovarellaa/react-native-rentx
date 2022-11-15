@@ -168,7 +168,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} loading={loading} />
+        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} loading={loading} disabled={!!loading}/>
       </Footer>
     </CarDetailsContainer>
   )
