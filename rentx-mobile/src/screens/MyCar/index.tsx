@@ -1,3 +1,4 @@
+import { AntDesign } from "@expo/vector-icons";
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
@@ -7,7 +8,16 @@ import { Car } from "../../components/Car";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/axios";
 
-import { Appointments, AppointmentsQuantity, AppointmentsTitle, Content, Header, MyCarContainer, SubTitle, Title } from "./styles";
+import {
+  Appointments,
+  AppointmentsQuantity,
+  AppointmentsTitle, CarFooter, CarFooterDate, CarFooterPeriod, CarFooterTitle, CarWrapper,
+  Content,
+  Header,
+  MyCarContainer,
+  SubTitle,
+  Title
+} from "./styles";
 
 interface CarProps {
   id: string
@@ -66,8 +76,25 @@ export function MyCar() {
         <FlatList
           data={cars}
           showsVerticalScrollIndicator={false}
-          keyExtractor={item  => item.id}
-          renderItem={({ item }) => <Car data={item.car} />}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <CarWrapper>
+              <Car data={item.car} />
+              <CarFooter>
+                <CarFooterTitle>Período</CarFooterTitle>
+                <CarFooterPeriod>
+                  <CarFooterDate>18/11/2022</CarFooterDate>
+                  <AntDesign
+                    name="arrowright"
+                    size={20}
+                    color={theme.colors.title}
+                    style={{ marginHorizontal: 10 }}
+                  />
+                  <CarFooterDate>28/11/2022</CarFooterDate>
+                </CarFooterPeriod>
+              </CarFooter>
+            </CarWrapper>
+          )}
         />
       </Content>
     </MyCarContainer>
