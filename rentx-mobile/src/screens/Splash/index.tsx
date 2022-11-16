@@ -56,7 +56,8 @@ export function Splash() {
         runOnJS(startApp)()
       }
     )
-  }, [splashAnimation])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SplashContainer>
