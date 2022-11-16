@@ -8,7 +8,7 @@ import { RFValue } from "react-native-responsive-fontsize"
 import { useTheme } from "styled-components"
 import Logo from "../../assets/logo.svg"
 import { Car } from "../../components/Car"
-import { Loading } from "../../components/Loading"
+import { LoadingAnimation } from "../../components/LoadingAnimation"
 import { CarDTO } from "../../dtos/CarDTO"
 import { api } from "../../services/axios"
 import { CarList, Header, HeaderContent, HomeContainer, TotalCar } from "./styles"
@@ -96,7 +96,7 @@ export function Home() {
 
       {
         loading
-          ? <Loading />
+          ? <LoadingAnimation />
           : <CarList
             data={cars}
             keyExtractor={(item) => item.id}

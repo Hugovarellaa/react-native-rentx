@@ -5,7 +5,7 @@ import { FlatList } from "react-native";
 import { useTheme } from "styled-components";
 import { BackButton } from "../../components/BackButton";
 import { Car } from "../../components/Car";
-import { Loading } from "../../components/Loading";
+import { LoadingAnimation } from "../../components/LoadingAnimation";
 import { CarDTO } from "../../dtos/CarDTO";
 import { api } from "../../services/axios";
 
@@ -72,7 +72,7 @@ export function MyCar() {
 
       {
         loading ? (
-          <Loading />
+          <LoadingAnimation />
         ) : (
           <Content>
             <Appointments>
