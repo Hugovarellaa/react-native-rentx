@@ -3,7 +3,7 @@ import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/
 import { useEffect, useState } from "react"
 import { StatusBar, StyleSheet } from "react-native"
 import { PanGestureHandler, RectButton } from 'react-native-gesture-handler'
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import { RFValue } from "react-native-responsive-fontsize"
 import { useTheme } from "styled-components"
 import Logo from "../../assets/logo.svg"
@@ -35,6 +35,8 @@ export function Home() {
       positionY.value = ctx.positionY + event.translationY
     },
     onEnd: () => {
+      positionX.value = withSpring(0)
+      positionY.value = withSpring(0)
     },
 
   })
