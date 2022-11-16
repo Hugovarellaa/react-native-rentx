@@ -104,7 +104,8 @@ export function Home() {
           />
       }
 
-      <PanGestureHandler onGestureEvent={onGestureEvent}>
+      <PanGestureHandler onGestureEvent={onGestureEvent} >
+
         <Animated.View
           style={[
             myCarsButtonStyle,
@@ -114,10 +115,13 @@ export function Home() {
               right: 22
             }
           ]}
+
         >
           <ButtonAnimated onPress={handleMyCar} style={[
             styles.button,
-            { backgroundColor: theme.colors.main }
+            {
+              backgroundColor: theme.colors.main,
+            }
           ]}>
 
             <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
