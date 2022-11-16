@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons"
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
-import { StatusBar, StyleSheet } from "react-native"
+import { BackHandler, StatusBar, StyleSheet } from "react-native"
 import { PanGestureHandler, RectButton } from 'react-native-gesture-handler'
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import { RFValue } from "react-native-responsive-fontsize"
@@ -72,6 +72,12 @@ export function Home() {
       }
     }
     fetchCar()
+  }, [])
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true
+    })
   }, [])
 
   return (
