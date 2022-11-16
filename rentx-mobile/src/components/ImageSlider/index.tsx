@@ -18,7 +18,6 @@ export function ImageSlider({ imagesUrl }: ImageSliderProps) {
   const indexChanged = useRef((info: ChangeImageProps) => {
     const index = info.viewableItems[0].index!
     setImageIndex(index)
-
   })
 
   return (
