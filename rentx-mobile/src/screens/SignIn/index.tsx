@@ -22,9 +22,17 @@ export function SignIn() {
       })
 
       await schema.validate({ email, password })
+
+      // Fazer login
     } catch (error) {
-      Alert.alert("Tudo errado")
-      console.log(error)
+      if (error instanceof yup.ValidationError) {
+        return Alert.alert('Opa', error.message)
+      } else {
+        Alert.alert(
+          'Error na autenticação',
+          'Ocorreu um error ao fazer o login, verifique as credenciais'
+        )
+      }
     }
   }
 
