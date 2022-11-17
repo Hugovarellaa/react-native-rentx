@@ -1,6 +1,7 @@
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
+import { Input } from "../../../components/Input";
 import { Form, FormTitle, Header, SignUpFirstStepContainer, Steps, SubTitle, Title } from "./styles";
 
 
@@ -32,6 +33,10 @@ export function SignUpFirstStep() {
 
       <Form>
         <FormTitle>1. Dados</FormTitle>
+
+        <Input iconName="user" placeholder="Nome"/>
+        <Input iconName="mail" placeholder="E-mail"/>
+        <Input iconName="credit-card" placeholder="CNH"/>
       </Form>
 
     </SignUpFirstStepContainer>
