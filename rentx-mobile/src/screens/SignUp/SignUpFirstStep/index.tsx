@@ -1,7 +1,7 @@
 import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
-import { Header, SignUpFirstStepContainer, Steps, SubTitle, Title } from "./styles";
+import { Form, FormTitle, Header, SignUpFirstStepContainer, Steps, SubTitle, Title } from "./styles";
 
 
 export function SignUpFirstStep() {
@@ -29,6 +29,10 @@ export function SignUpFirstStep() {
         Faça seu cadastro de{'\n'}
         forma rápida e fácil.
       </SubTitle>
+
+      <Form>
+        <FormTitle>1. Dados</FormTitle>
+      </Form>
 
     </SignUpFirstStepContainer>
   )
