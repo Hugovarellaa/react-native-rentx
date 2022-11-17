@@ -79,7 +79,13 @@ export function SchedulingDetails() {
       id: car.id,
       unavailable_dates
     })
-      .then(() => navigation.navigate('SchedulingComplete'))
+      .then(() => {
+        navigation.navigate('Confirmation', {
+          title: 'Carro alugado!',
+          message: `Agora você só precisa ir \n até a concessionária da RENTX`,
+          nextScreenRoute: 'Home',
+        })
+      })
       .catch(() => {
         Alert.alert('Não foi possível fazer o agendamento')
         setLoading(false)
@@ -168,7 +174,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} loading={loading} disabled={!!loading}/>
+        <Button title="Alugar agora" color={theme.colors.success} onPress={handleConfirmRental} loading={loading} disabled={!!loading} />
       </Footer>
     </CarDetailsContainer>
   )

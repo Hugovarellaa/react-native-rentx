@@ -1,7 +1,7 @@
 import { RFValue } from "react-native-responsive-fontsize"
 import styled from "styled-components/native"
 
-export const SchedulingCompleteContainer = styled.View`
+export const ConfirmationContainer = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.header};
   padding-top: 96px;

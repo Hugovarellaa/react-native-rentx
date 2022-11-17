@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { CarDetails } from "../screens/CarDetails"
+import { Confirmation } from "../screens/Confirmation"
 import { Home } from "../screens/Home"
 import { MyCar } from "../screens/MyCar"
 import { Scheduling } from "../screens/Scheduling"
-import { SchedulingComplete } from "../screens/SchedulingComplete"
 import { SchedulingDetails } from "../screens/SchedulingDetails"
 import { SignIn } from "../screens/SignIn"
 import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep"
@@ -15,7 +15,7 @@ const { Navigator, Screen } = createNativeStackNavigator()
 
 export function StackRoutes() {
   return (
-    <Navigator initialRouteName="SignIn" screenOptions={{
+    <Navigator initialRouteName="Home" screenOptions={{
       headerShown: false
     }}>
       <Screen name="SignIn" component={SignIn} />
@@ -26,7 +26,7 @@ export function StackRoutes() {
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
-      <Screen name="SchedulingComplete" component={SchedulingComplete} />
+      <Screen name="Confirmation" component={Confirmation} />
       <Screen name="MyCar" component={MyCar} />
     </Navigator>
   )
