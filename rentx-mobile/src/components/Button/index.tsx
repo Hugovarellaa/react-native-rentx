@@ -1,25 +1,25 @@
-import { ActivityIndicator, TouchableOpacityProps } from "react-native"
+import { ActivityIndicator } from "react-native"
 import { useTheme } from 'styled-components'
 import { ButtonContainer, Title } from "./styles"
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonProps  {
   title: string
   color?: string
-  onPress?: () => void
+  onPress: () => void
   disabled?: boolean
   loading?: boolean
   light?: boolean
 }
 
 export function Button({
-    title,
-    color,
-    onPress,
-    disabled = false,
-    loading = false,
-    light = false,
-    ...rest
-  }: ButtonProps) {
+  title,
+  color,
+  onPress,
+  disabled = false,
+  loading = false,
+  light = false,
+  ...rest
+}: ButtonProps) {
   const theme = useTheme()
 
   return (
@@ -31,7 +31,7 @@ export function Button({
     >
       {
         loading
-          ? <ActivityIndicator  color={theme.colors.shape} />
+          ? <ActivityIndicator color={theme.colors.shape} />
           : <Title light={light}>{title}</Title>
 
       }
