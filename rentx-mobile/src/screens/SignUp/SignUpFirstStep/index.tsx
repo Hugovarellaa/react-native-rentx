@@ -8,6 +8,8 @@ import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
 import { Form, FormTitle, Header, SignUpFirstStepContainer, Steps, SubTitle, Title } from "./styles";
 
+
+
 export function SignUpFirstStep() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -15,6 +17,7 @@ export function SignUpFirstStep() {
 
 
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
 
   function handleGoBack() {
     navigation.goBack()
@@ -38,8 +41,6 @@ export function SignUpFirstStep() {
       }
       console.log(error)
     }
-
-
   }
 
   return (
