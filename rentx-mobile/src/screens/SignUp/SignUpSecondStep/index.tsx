@@ -34,6 +34,11 @@ export function SignUpSecondStep() {
       return Alert.alert('As senhas precisam ser iguais')
     }
 
+    navigation.navigate('Confirmation' , {
+        title: 'Conta Criada',
+        nextScreenRoute: 'SignIn'
+
+    })
     // enviar para API
   }
 
