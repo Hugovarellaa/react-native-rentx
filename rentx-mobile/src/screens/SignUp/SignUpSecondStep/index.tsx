@@ -1,5 +1,6 @@
 import { NavigationProp, ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from "react-native";
+import { useState } from "react";
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from "react-native";
 import { useTheme } from "styled-components";
 import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
@@ -16,11 +17,25 @@ interface Params {
 }
 
 export function SignUpSecondStep() {
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const theme = useTheme()
 
   const route = useRoute()
   const { user } = route.params as Params
+
+  function handleRegister() {
+    if (!password || !passwordConfirm) {
+      return Alert.alert('Informe a senha e confirmação')
+    }
+    if (password != passwordConfirm) {
+      return Alert.alert('As senhas precisam ser iguais')
+    }
+
+    // enviar para API
+  }
 
 
   function handleGoBack() {
@@ -53,11 +68,21 @@ export function SignUpSecondStep() {
 
           <Form>
             <FormTitle>02. Senha</FormTitle>
-            <PasswordInput iconName="lock" placeholder="Senha" />
-            <PasswordInput iconName="lock" placeholder="Repetir senha" />
+            <PasswordInput
+              iconName="lock"
+              placeholder="Senha"
+              onChangeText={setPassword}
+              value={password}
+            />
+            <PasswordInput
+              iconName="lock"
+              placeholder="Repetir senha"
+              onChangeText={setPasswordConfirm}
+              value={passwordConfirm}
+            />
           </Form>
 
-          <Button title="Cadastrar" onPress={() => { }} color={theme.colors.success} />
+          <Button title="Cadastrar" onPress={handleRegister} color={theme.colors.success} />
 
         </SignUpSecondStepContainer>
       </TouchableWithoutFeedback>
