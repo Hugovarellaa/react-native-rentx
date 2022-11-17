@@ -1,4 +1,4 @@
-import { NavigationProp, ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
+import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from "react-native";
 import { useTheme } from "styled-components";
@@ -8,13 +8,13 @@ import { Button } from "../../../components/Button";
 import { PasswordInput } from "../../../components/PasswordInput";
 import { Form, FormTitle, Header, SignUpSecondStepContainer, Steps, SubTitle, Title } from "./styles";
 
-interface Params {
-  user: {
-    name: string;
-    email: string;
-    driverLicense: string
-  }
-}
+// interface Params {
+//   user: {
+//     name: string;
+//     email: string;
+//     driverLicense: string
+//   }
+// }
 
 export function SignUpSecondStep() {
   const [password, setPassword] = useState('')
@@ -23,8 +23,8 @@ export function SignUpSecondStep() {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const theme = useTheme()
 
-  const route = useRoute()
-  const { user } = route.params as Params
+  // const route = useRoute()
+  // const { user } = route.params as Params
 
   function handleRegister() {
     if (!password || !passwordConfirm) {
