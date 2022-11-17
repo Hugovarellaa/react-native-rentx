@@ -6,6 +6,7 @@ import { Scheduling } from "../screens/Scheduling"
 import { SchedulingComplete } from "../screens/SchedulingComplete"
 import { SchedulingDetails } from "../screens/SchedulingDetails"
 import { SignIn } from "../screens/SignIn"
+import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep"
 // import { Splash } from "../screens/Splash"
 
 
@@ -17,6 +18,7 @@ export function StackRoutes() {
       headerShown: false
     }}>
       <Screen name="SignIn" component={SignIn} />
+      <Screen name="SignUpFirstStep" component={SignUpFirstStep} />
       {/* <Screen name="Splash" component={Splash} /> */}
       <Screen name="Home" component={Home} options={{ gestureEnabled: false }} />
       <Screen name="CarDetails" component={CarDetails} />
