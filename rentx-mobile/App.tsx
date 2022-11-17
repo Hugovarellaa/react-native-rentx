@@ -3,7 +3,7 @@ import { Inter_400Regular, Inter_500Medium, useFonts } from "@expo-google-fonts/
 import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ThemeProvider } from "styled-components"
-import { Loading } from "./src/components/Loading"
+import { LoadingAnimation } from "./src/components/LoadingAnimation"
 import { Routes } from "./src/routes"
 import theme from "./src/styles/theme"
 
@@ -20,7 +20,7 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         {
-          fontsLoading ? <Routes /> : <Loading />
+          fontsLoading ? <Routes /> : <LoadingAnimation />
         }
       </ThemeProvider>
     </GestureHandlerRootView>

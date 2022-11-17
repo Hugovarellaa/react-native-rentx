@@ -8,9 +8,18 @@ interface ButtonProps extends TouchableOpacityProps {
   onPress?: () => void
   disabled?: boolean
   loading?: boolean
+  light?: boolean
 }
 
-export function Button({ title, color, onPress, disabled = false, loading = false, ...rest }: ButtonProps) {
+export function Button({
+    title,
+    color,
+    onPress,
+    disabled = false,
+    loading = false,
+    light = false,
+    ...rest
+  }: ButtonProps) {
   const theme = useTheme()
 
   return (
@@ -22,8 +31,8 @@ export function Button({ title, color, onPress, disabled = false, loading = fals
     >
       {
         loading
-          ? <ActivityIndicator color={theme.colors.shape} />
-          : <Title>{title}</Title>
+          ? <ActivityIndicator  color={theme.colors.shape} />
+          : <Title light={light}>{title}</Title>
 
       }
     </ButtonContainer>
