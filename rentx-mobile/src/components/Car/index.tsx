@@ -22,13 +22,13 @@ export function Car({ data, ...rest }: CarProps) {
         <About>
           <Rent>
             <Period>
-              {/* {data.rent.period} */}
-              Aqui estava com erro
-              </Period>
+              {data.period}
+
+            </Period>
             <Price>
-              {/* {`R$ ${data.rent.price}`} */}
-              Aqui estava com erro
-              </Price>
+              {`R$ ${data.price}`}
+
+            </Price>
           </Rent>
 
           <Type>

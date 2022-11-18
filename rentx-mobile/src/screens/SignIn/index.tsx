@@ -6,10 +6,14 @@ import * as yup from 'yup';
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { PasswordInput } from "../../components/PasswordInput";
+import { useAuth } from "../../hook/auth";
 import { Footer, Form, Header, SignInContainer, SubTitle, Title } from "./styles";
 
 
 export function SignIn() {
+  const { signIn } = useAuth()
+
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -26,7 +30,8 @@ export function SignIn() {
 
       await schema.validate({ email, password })
 
-      // Fazer login
+      await signIn({email , password})
+
     } catch (error) {
       if (error instanceof yup.ValidationError) {
         return Alert.alert('Opa', error.message)

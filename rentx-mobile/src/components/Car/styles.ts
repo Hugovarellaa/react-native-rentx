@@ -11,7 +11,7 @@ export const CarContainer = styled(TouchableOpacity)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 24px;
+  padding: 24px 0px 24px 24px;
 
   margin-bottom: 16px;
 `
@@ -29,7 +29,7 @@ export const Brand = styled.Text`
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_500};
   color: ${({ theme }) => theme.colors.title};
-  font-size: ${RFValue(15)}px;
+  font-size: ${RFValue(14)}px;
 
   text-transform: uppercase;
 `
@@ -65,4 +65,5 @@ export const Type = styled.View``
 export const CarImage = styled.Image`
   width: 180px;
   height: 92px;
+  margin-left: auto;
 `

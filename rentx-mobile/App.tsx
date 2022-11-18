@@ -4,6 +4,7 @@ import 'react-native-gesture-handler'
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ThemeProvider } from "styled-components"
 import { LoadingAnimation } from "./src/components/LoadingAnimation"
+import { AppProvider } from "./src/hook"
 import { Routes } from "./src/routes"
 import theme from "./src/styles/theme"
 
@@ -19,9 +20,11 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
-        {
-          fontsLoading ? <Routes /> : <LoadingAnimation />
-        }
+        <AppProvider>
+          {
+            fontsLoading ? <Routes /> : <LoadingAnimation />
+          }
+        </AppProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   )

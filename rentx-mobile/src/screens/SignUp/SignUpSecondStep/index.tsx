@@ -48,8 +48,7 @@ export function SignUpSecondStep() {
 
         })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
         Alert.alert('Opa', 'Não foi possível cadastrar')
       })
 
