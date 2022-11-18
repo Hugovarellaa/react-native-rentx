@@ -64,6 +64,7 @@ export function Home() {
     async function fetchCar() {
       try {
         const response = await api.get('/cars')
+        console.log(response)
         setCars(response.data)
       } catch (err) {
         console.log(err)

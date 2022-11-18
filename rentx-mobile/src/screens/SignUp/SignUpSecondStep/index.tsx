@@ -1,4 +1,4 @@
-import { NavigationProp, ParamListBase, useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
 import { useState } from "react";
 import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from "react-native";
 import { useTheme } from "styled-components";
@@ -6,15 +6,16 @@ import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
 import { Button } from "../../../components/Button";
 import { PasswordInput } from "../../../components/PasswordInput";
+import { api } from "../../../services/axios";
 import { Form, FormTitle, Header, SignUpSecondStepContainer, Steps, SubTitle, Title } from "./styles";
 
-// interface Params {
-//   user: {
-//     name: string;
-//     email: string;
-//     driverLicense: string
-//   }
-// }
+interface Params {
+  user: {
+    name: string;
+    email: string;
+    driverLicense: string
+  }
+}
 
 export function SignUpSecondStep() {
   const [password, setPassword] = useState('')
@@ -23,23 +24,35 @@ export function SignUpSecondStep() {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const theme = useTheme()
 
-  // const route = useRoute()
-  // const { user } = route.params as Params
+  const route = useRoute()
+  const { user } = route.params as Params
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!password || !passwordConfirm) {
       return Alert.alert('Informe a senha e confirmação')
     }
-    if (password != passwordConfirm) {
+    if (password !== passwordConfirm) {
       return Alert.alert('As senhas precisam ser iguais')
     }
 
-    navigation.navigate('Confirmation' , {
-        title: 'Conta Criada',
-        nextScreenRoute: 'SignIn'
-
+    await api.post('/users', {
+      name: user.name,
+      email: user.email,
+      password,
+      driver_license: user.driverLicense
     })
-    // enviar para API
+      .then(() => {
+        navigation.navigate('Confirmation', {
+          title: 'Conta Criada',
+          nextScreenRoute: 'SignIn'
+
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+        Alert.alert('Opa', 'Não foi possível cadastrar')
+      })
+
   }
 
 

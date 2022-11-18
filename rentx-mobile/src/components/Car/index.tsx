@@ -21,8 +21,14 @@ export function Car({ data, ...rest }: CarProps) {
 
         <About>
           <Rent>
-            <Period>{data.rent.period}</Period>
-            <Price>{`R$ ${data.rent.price}`}</Price>
+            <Period>
+              {/* {data.rent.period} */}
+              Aqui estava com erro
+              </Period>
+            <Price>
+              {/* {`R$ ${data.rent.price}`} */}
+              Aqui estava com erro
+              </Price>
           </Rent>
 
           <Type>
