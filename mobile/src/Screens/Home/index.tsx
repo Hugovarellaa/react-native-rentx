@@ -1,7 +1,7 @@
 import { StatusBar } from "react-native";
 import { Header, HomeContainer } from "./styles";
 
-
+import LogoSvg from '../../assets/logo.svg';
 
 export function Home() {
   return (
@@ -12,7 +12,7 @@ export function Home() {
         barStyle="light-content"
       />
       <Header>
-
+        <LogoSvg />
       </Header>
     </HomeContainer>
   )
