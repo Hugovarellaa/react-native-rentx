@@ -1,7 +1,7 @@
 import { Accessory } from "../../Components/Accessory";
 import { BackButton } from "../../Components/BackButton";
 import { ImageSlider } from "../../Components/ImageSlider";
-import { About, AccessoryWrapper, Brand, CarDetailsContainer, CarImages, Content, Description, Details, Header, Name, Period, Price, Rent } from "./styles";
+import { About, AccessoryWrapper, Brand, CarDetailsContainer, CarImages, Content, Description, Details, Footer, Header, Name, Period, Price, Rent } from "./styles";
 
 import AccelerationSvg from "../../assets/acceleration.svg";
 import ExchangeSvg from "../../assets/exchange.svg";
@@ -9,6 +9,7 @@ import ForceSvg from "../../assets/force.svg";
 import GasolineSvg from "../../assets/gasoline.svg";
 import PeopleSvg from "../../assets/people.svg";
 import SpeedSvg from "../../assets/speed.svg";
+import { Button } from "../../Components/Button";
 
 
 export function CarDetails() {
@@ -49,6 +50,10 @@ export function CarDetails() {
           Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar.
         </About>
       </Content>
+    
+    <Footer>
+      <Button title="Escolher período do aluguel" onPress={()=>{}}/>
+    </Footer>
 
     </CarDetailsContainer>
   )
