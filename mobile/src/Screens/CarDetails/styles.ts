@@ -93,3 +93,9 @@ export const AccessoryWrapper = styled.View`
   margin-top: 16px;
   
 `
+
+export const Footer = styled.View`
+  width: 100%;
+  background-color: ${({theme}) => theme.colors.background_secondary};
+  padding: 24px 24px ${getStatusBarHeight() + 24}px
+`
