@@ -9,15 +9,21 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/archivo": "^0.2.2",
+    "@expo-google-fonts/inter": "^0.2.2",
     "expo": "~47.0.6",
+    "expo-font": "~11.0.1",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
-    "react-native": "0.70.5"
+    "react-native": "0.70.5",
+    "react-native-responsive-fontsize": "^0.5.1",
+    "react-native-svg": "13.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react-native": "~0.70.6",
+    "@types/styled-components-react-native": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.0.1",
@@ -29,6 +35,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.11",
     "prettier": "^2.7.1",
+    "react-native-svg-transformer": "^1.0.0",
+    "styled-components": "^5.3.6",
     "typescript": "*"
   },
   "private": true
