@@ -1,13 +1,15 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { TouchableOpacityProps } from "react-native";
 import { BackButtonContainer } from "./styles";
 
-interface Props {
+
+interface Props extends TouchableOpacityProps {
   color?: 'gray' | 'white'
 }
 
-export function CarDetails({ color = 'white' }: Props) {
+export function CarDetails({ color = 'white', ...rest }: Props) {
   return (
-    <BackButtonContainer>
+    <BackButtonContainer {...rest}>
       <MaterialIcons
         name="chevron-left"
         size={24}
