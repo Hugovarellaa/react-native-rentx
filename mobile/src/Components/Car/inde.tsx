@@ -34,7 +34,7 @@ export function Car({ data }: CarProps) {
         </About>
 
       </Details>
-      <CarImage source={{ uri: data.thumbnail }} />
+      <CarImage source={{ uri: data.thumbnail }} resizeMode='contain' />
     </CarContainer>
   )
 }
