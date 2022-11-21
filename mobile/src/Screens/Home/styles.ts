@@ -5,4 +5,6 @@ export const HomeContainer = styled.View`
   align-items: center;
   justify-content: center;
 `
-export const Title = styled.Text``
+export const Title = styled.Text`
+  color: ${({theme}) => theme.colors.main};
+`
