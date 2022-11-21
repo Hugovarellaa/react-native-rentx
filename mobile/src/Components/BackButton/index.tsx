@@ -7,7 +7,7 @@ interface Props extends TouchableOpacityProps {
   color?: 'gray' | 'white'
 }
 
-export function CarDetails({ color = 'white', ...rest }: Props) {
+export function BackButton({ color = 'white', ...rest }: Props) {
   return (
     <BackButtonContainer {...rest}>
       <MaterialIcons
