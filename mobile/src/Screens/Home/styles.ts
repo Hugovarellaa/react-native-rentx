@@ -7,6 +7,7 @@ export const HomeContainer = styled.View`
 `
 export const Title = styled.Text`
   color: ${({theme}) => theme.colors.main};
-  font-family: ${({theme}) => theme.fonts.secondary_500};
+  font-family: ${({theme}) => theme.fonts.secondary_400};
+  
 ;
 `
