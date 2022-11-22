@@ -13,6 +13,8 @@ export const Content = styled.View`
   align-items: center;
   justify-content: center;
 
+  padding-bottom: 16px;
+
 `
 
 export const Title = styled.Text`
