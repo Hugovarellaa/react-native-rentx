@@ -3,7 +3,7 @@ import { Inter_400Regular, Inter_500Medium, useFonts } from '@expo-google-fonts/
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Loading } from './src/Components/Loading';
-import { SchedulingDetails } from './src/Screens/SchedulingDetails';
+import { SchedulingCompleted } from './src/Screens/SchedulingCompleted';
 import theme from './src/styles/theme';
 
 
@@ -16,7 +16,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {
-        isLoading ? <SchedulingDetails /> : <Loading />
+        isLoading ? <SchedulingCompleted /> : <Loading />
       }
     </ThemeProvider>
   )
