@@ -4,6 +4,7 @@ import { Alert, StatusBar } from "react-native";
 import { RFValue } from 'react-native-responsive-fontsize';
 import LogoSvg from '../../assets/logo.svg';
 import { Car } from "../../Components/Car/inde";
+import { Loading } from "../../Components/Loading";
 import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
 import { CarList, Header, HeaderWrapper, HomeContainer, TotalCar } from "./styles";
@@ -58,11 +59,18 @@ export function Home() {
         </HeaderWrapper>
       </Header>
 
-      <CarList
-        data={cars}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <Car data={item} onPress={handleNextPage} />}
-      />
+      {
+        loading
+          ? <Loading />
+          : (
+            <CarList
+              data={cars}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => <Car data={item} onPress={handleNextPage} />}
+            />
+          )
+      }
+
     </HomeContainer>
   )
 }
