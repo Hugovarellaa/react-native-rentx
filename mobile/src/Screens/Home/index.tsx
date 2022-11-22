@@ -1,10 +1,9 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "react-native";
 import { RFValue } from 'react-native-responsive-fontsize';
 import LogoSvg from '../../assets/logo.svg';
 import { Car } from "../../Components/Car/inde";
 import { CarList, Header, HeaderWrapper, HomeContainer, TotalCar } from "./styles";
-
-// ''
 
 export function Home() {
   const carOne = {
@@ -15,6 +14,12 @@ export function Home() {
       price: 580
     },
     thumbnail: 'https://www.pngarts.com/files/3/Lamborghini-Huracan-PNG-Download-Image.png'
+  }
+
+  const navigation = useNavigation()
+
+  function handleNextPage() {
+    navigation.navigate('Home')
   }
 
   return (
