@@ -4,6 +4,7 @@ import { Content, DateInfo, DateTitle, DateValue, Footer, Header, RentalPeriod, 
 import { StatusBar } from "react-native";
 import ArrowLeftSvg from '../../assets/arrow.svg';
 import { Button } from "../../Components/Button";
+import { Calendar } from "../../Components/Calendar";
 
 export function Scheduling() {
   return (
@@ -37,7 +38,7 @@ export function Scheduling() {
       </Header>
 
       <Content>
-
+        <Calendar />
       </Content>
 
       <Footer>
