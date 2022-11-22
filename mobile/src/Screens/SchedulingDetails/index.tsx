@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { Accessory } from "../../Components/Accessory";
 import { BackButton } from "../../Components/BackButton";
 import { ImageSlider } from "../../Components/ImageSlider";
@@ -34,10 +35,20 @@ import { Button } from "../../Components/Button";
 export function SchedulingDetails() {
   const theme = useTheme()
 
+  const navigation = useNavigation()
+
+  function goBack() {
+    navigation.goBack()
+  }
+
+  function handleNextPage() {
+    navigation.navigate('SchedulingCompleted')
+  }
+
   return (
     <CarDetailsContainer>
       <Header>
-        <BackButton color="gray" />
+        <BackButton color="gray" onPress={goBack} />
       </Header>
       <CarImages>
         <ImageSlider
@@ -97,7 +108,7 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color="green" onPress={() => { }} />
+        <Button title="Alugar agora" color="green" onPress={handleNextPage} />
       </Footer>
 
     </CarDetailsContainer>

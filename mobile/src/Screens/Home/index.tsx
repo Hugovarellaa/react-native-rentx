@@ -19,7 +19,7 @@ export function Home() {
   const navigation = useNavigation()
 
   function handleNextPage() {
-    navigation.navigate('Home')
+    navigation.navigate('CarDetails')
   }
 
   return (
@@ -40,7 +40,7 @@ export function Home() {
       <CarList
         data={[1, 2, 3, 4, 5, 6, 7, 8]}
         keyExtractor={item => String(item)}
-        renderItem={({ item }) => <Car data={carOne} />}
+        renderItem={({ item }) => <Car data={carOne} onPress={handleNextPage} />}
       />
     </HomeContainer>
   )

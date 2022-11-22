@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar, useWindowDimensions } from 'react-native';
 import DoneSvg from '../../assets/done.svg';
 import LogoSvg from "../../assets/logo_background_gray.svg";
@@ -7,6 +8,12 @@ import { Content, Footer, SchedulingCompletedContainer, SubTitle, Title } from "
 
 export function SchedulingCompleted() {
   const { width } = useWindowDimensions()
+
+  const navigation = useNavigation()
+
+  function handleNextPage() {
+    navigation.navigate('Home')
+  }
   return (
     <SchedulingCompletedContainer>
       <StatusBar
@@ -27,7 +34,7 @@ export function SchedulingCompleted() {
       </Content>
 
       <Footer>
-        <ButtonConfirm title='OK' onPress={() => { }} />
+        <ButtonConfirm title='OK' onPress={handleNextPage} />
       </Footer>
     </SchedulingCompletedContainer>
   )

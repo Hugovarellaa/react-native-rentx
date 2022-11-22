@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { BackButton } from "../../Components/BackButton";
 import { Content, DateInfo, DateTitle, DateValue, Footer, Header, RentalPeriod, SchedulingContainer, Title } from "./styles";
 
@@ -7,6 +8,17 @@ import { Button } from "../../Components/Button";
 import { Calendar } from "../../Components/Calendar";
 
 export function Scheduling() {
+
+  const navigation = useNavigation()
+
+  function goBack() {
+    navigation.goBack()
+  }
+
+  function handleNextPage() {
+    navigation.navigate('SchedulingDetails')
+  }
+
   return (
     <SchedulingContainer>
       <StatusBar
@@ -15,7 +27,7 @@ export function Scheduling() {
         barStyle="light-content"
       />
       <Header>
-        <BackButton color="white" />
+        <BackButton color="white" onPress={goBack} />
         <Title>
           Escolha uma{'\n'}
           data de início e{'\n'}
@@ -42,7 +54,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirma" onPress={() => { }} />
+        <Button title="Confirma" onPress={handleNextPage} />
       </Footer>
     </SchedulingContainer>
   )
