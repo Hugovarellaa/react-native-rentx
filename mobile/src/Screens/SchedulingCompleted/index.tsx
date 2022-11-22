@@ -1,7 +1,8 @@
 import { useWindowDimensions } from 'react-native';
 import DoneSvg from '../../assets/done.svg';
 import LogoSvg from "../../assets/logo_background_gray.svg";
-import { Content, SchedulingCompletedContainer, SubTitle, Title } from "./styles";
+import { ButtonConfirm } from '../../Components/ButtonConfirm';
+import { Content, Footer, SchedulingCompletedContainer, SubTitle, Title } from "./styles";
 
 
 export function SchedulingCompleted() {
@@ -19,6 +20,10 @@ export function SchedulingCompleted() {
           pegar o seu automóvel.
         </SubTitle>
       </Content>
+
+      <Footer>
+        <ButtonConfirm title='OK' onPress={() => { }} />
+      </Footer>
     </SchedulingCompletedContainer>
   )
 }
