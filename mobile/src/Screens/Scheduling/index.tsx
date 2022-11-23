@@ -1,25 +1,47 @@
 import { useNavigation } from "@react-navigation/native";
-import { BackButton } from "../../Components/BackButton";
-import { Content, DateInfo, DateTitle, DateValue, Footer, Header, RentalPeriod, SchedulingContainer, Title } from "./styles";
-
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { format } from 'date-fns';
 import { useState } from "react";
 import { StatusBar } from "react-native";
+import { RootStackParamList } from "../../@types/navigation";
 import ArrowLeftSvg from '../../assets/arrow.svg';
+import { BackButton } from "../../Components/BackButton";
 import { Button } from "../../Components/Button";
 import { Calendar, DayProps, MarkeDateProps } from "../../Components/Calendar";
 import { generateInterval } from "../../Components/Calendar/generateInterval";
+import { getPlatformDate } from "../../utils/getPlataformDate";
+import { Content, DateInfo, DateTitle, DateValue, Footer, Header, RentalPeriod, SchedulingContainer, Title } from "./styles";
 
-export function Scheduling() {
+interface RentalPeriod {
+  startFormatted: string;
+  endFormatted: string;
+}
+
+type SchedulingScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Scheduling'
+>;
+
+type SchedulingProps = NativeStackScreenProps<RootStackParamList, 'CarDetails'>;
+
+
+export function Scheduling({ route }: SchedulingProps) {
   const [lastSelectedDate, setLastSelectedDate] = useState<DayProps>({} as DayProps)
   const [markedDates, setMarkedDates] = useState<MarkeDateProps>({} as MarkeDateProps)
-  const navigation = useNavigation()
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
 
-  function goBack() {
-    navigation.goBack()
+  const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
+  const { car } = route.params
+
+  function goBackPage() {
+    goBack()
   }
 
   function handleNextPage() {
-    navigation.navigate('SchedulingDetails')
+    navigate('SchedulingDetails', {
+      car,
+      dates: Object.keys(markedDates)
+    })
   }
 
   function handleChangeDate(date: DayProps) {
@@ -33,8 +55,15 @@ export function Scheduling() {
 
     setLastSelectedDate(end)
     const interval = generateInterval(start, end)
-    console.log(interval)
     setMarkedDates(interval)
+
+    const firstDate = Object.keys(interval)[0]
+    const endDate = Object.keys(interval)[Object.keys(interval).length - 1]
+
+    setRentalPeriod({
+      startFormatted: format(getPlatformDate(new Date(firstDate)), 'dd/MM/yyyy'),
+      endFormatted: format(getPlatformDate(new Date(endDate)), 'dd/MM/yyyy')
+    })
   }
 
   return (
@@ -45,7 +74,7 @@ export function Scheduling() {
         barStyle="light-content"
       />
       <Header>
-        <BackButton color="white" onPress={goBack} />
+        <BackButton color="white" onPress={goBackPage} />
         <Title>
           Escolha uma{'\n'}
           data de início e{'\n'}
@@ -55,14 +84,14 @@ export function Scheduling() {
         <RentalPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue selected={false}>22/10/2022</DateValue>
+            <DateValue selected={!!rentalPeriod.startFormatted}>{rentalPeriod.startFormatted}</DateValue>
           </DateInfo>
 
           <ArrowLeftSvg />
 
           <DateInfo>
             <DateTitle>ATE</DateTitle>
-            <DateValue selected>22/10/2022</DateValue>
+            <DateValue selected={!!rentalPeriod.endFormatted}>{rentalPeriod.endFormatted}</DateValue>
           </DateInfo>
         </RentalPeriod>
       </Header>
@@ -72,7 +101,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirma" onPress={handleNextPage} />
+        <Button title="Confirma" onPress={handleNextPage} disabled={!rentalPeriod.startFormatted} />
       </Footer>
     </SchedulingContainer>
   )

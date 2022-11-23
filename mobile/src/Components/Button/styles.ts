@@ -8,7 +8,7 @@ interface ButtonProps {
 
 export const ButtonContainer = styled(TouchableOpacity) <ButtonProps>`
   width: 100%;
-  padding: 19px;
+  height: 56px;
   align-items: center;
   justify-content: center;
 
