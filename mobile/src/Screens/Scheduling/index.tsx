@@ -79,7 +79,7 @@ export function Scheduling({ route }: SchedulingProps) {
         barStyle="light-content"
       />
       <Header>
-        <BackButton color="white" onPress={goBack} />
+        <BackButton color="white" onPress={goBackPage} />
         <Title>
           Escolha uma{'\n'}
           data de início e{'\n'}

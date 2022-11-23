@@ -1,3 +1,4 @@
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
@@ -6,9 +7,10 @@ import { useTheme } from "styled-components";
 import { RootStackParamList } from "../../@types/navigation";
 import { BackButton } from "../../Components/BackButton";
 import { Car } from "../../Components/Car/inde";
+import { Loading } from '../../Components/Loading';
 import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
-import { Appointments, AppointmentsQuantity, AppointmentsTitle, Content, Header, MyCarsContainer, SubTitle, Title } from "./styles";
+import { Appointments, AppointmentsQuantity, AppointmentsTitle, CarFooter, CarFooterDate, CarFooterPeriod, CarFooterTitle, CarWrapper, Content, Header, MyCarsContainer, SubTitle, Title } from "./styles";
 
 type MyCarsScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,6 +23,8 @@ interface CarProps {
   car: CarDto;
   user_id: string;
   id: string
+  startDate: string
+  endDate: string
 }
 
 export function MyCars({ route }: MyCarsProps) {
@@ -28,7 +32,6 @@ export function MyCars({ route }: MyCarsProps) {
   const [loading, setLoading] = useState(true)
 
   const theme = useTheme()
-
   const { goBack, navigate } = useNavigation<MyCarsScreenNavigationProp>()
 
   // const { } = route.params
@@ -71,21 +74,46 @@ export function MyCars({ route }: MyCarsProps) {
 
       </Header>
 
-      <Content>
-        <Appointments>
-          <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-          <AppointmentsQuantity>10</AppointmentsQuantity>
-        </Appointments>
+      {
+        loading
+          ? (
+            <Loading />
+          )
+          : (
+            <Content>
+              <Appointments>
+                <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+                <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
+              </Appointments>
 
-        <FlatList
-          data={cars}
-          keyExtractor={item => item.id}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <Car data={item.car} />
-          )}
-        />
-      </Content>
+              <FlatList
+                data={cars}
+                keyExtractor={item => item.id}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => (
+                  <CarWrapper>
+                    <Car data={item.car} />
+                    <CarFooter>
+                      <CarFooterTitle>Período</CarFooterTitle>
+                      <CarFooterPeriod>
+                        <CarFooterDate>{item.startDate}</CarFooterDate>
+                        <AntDesign
+                          name="arrowright"
+                          size={20}
+                          color={theme.colors.title}
+                          style={{ marginHorizontal: 10 }}
+                        />
+                        <CarFooterDate>{item.endDate}</CarFooterDate>
+                      </CarFooterPeriod>
+                    </CarFooter>
+                  </CarWrapper>
+                )}
+              />
+            </Content>
+          )
+      }
+
+
     </MyCarsContainer>
   )
 }
