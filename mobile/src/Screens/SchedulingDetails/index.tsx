@@ -25,13 +25,9 @@ import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-naviga
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
 import { RootStackParamList } from "../../@types/navigation";
-import AccelerationSvg from "../../assets/acceleration.svg";
-import ExchangeSvg from "../../assets/exchange.svg";
-import ForceSvg from "../../assets/force.svg";
-import GasolineSvg from "../../assets/gasoline.svg";
-import PeopleSvg from "../../assets/people.svg";
-import SpeedSvg from "../../assets/speed.svg";
+
 import { Button } from "../../Components/Button";
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 
 
 type SchedulingScreenNavigationProp = NativeStackNavigationProp<
@@ -60,34 +56,33 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
   return (
     <CarDetailsContainer>
       <Header>
-        <BackButton color="gray" onPress={goBack} />
+        <BackButton color="gray" onPress={goBackPage} />
       </Header>
       <CarImages>
         <ImageSlider
-          imagesUrl={["https://www.pngarts.com/files/3/Lamborghini-Huracan-PNG-Download-Image.png"]}
+          imagesUrl={car.photos}
         />
       </CarImages>
 
       <Content>
         <Details>
           <Description>
-            <Brand>Lamborghini</Brand>
-            <Name>Huracan</Name>
+            <Brand>{car.brand}</Brand>
+            <Name>{car.name}</Name>
           </Description>
 
           <Rent>
-            <Period>Ao dia</Period>
-            <Price>R$ 580</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>{`R$ ${car.rent.price}`}</Price>
           </Rent>
         </Details>
 
         <AccessoryWrapper>
-          <Accessory name="380km/h" icon={SpeedSvg} />
-          <Accessory name="3.2s" icon={AccelerationSvg} />
-          <Accessory name="800 HP" icon={ForceSvg} />
-          <Accessory name="Gasolina" icon={ExchangeSvg} />
-          <Accessory name="Auto" icon={GasolineSvg} />
-          <Accessory name="2 pessoas" icon={PeopleSvg} />
+          {
+            car.accessories.map(accessory => (
+              <Accessory key={accessory.type} name={accessory.name} icon={getAccessoryIcon(accessory.type)} />
+            ))
+          }
         </AccessoryWrapper>
 
         <RentalPeriod>
