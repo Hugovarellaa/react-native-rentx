@@ -1,12 +1,41 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
+import { FlatList, StatusBar } from "react-native";
+import { useTheme } from "styled-components";
+import { RootStackParamList } from "../../@types/navigation";
+import { BackButton } from "../../Components/BackButton";
+import { Car } from "../../Components/Car/inde";
 import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
-import { MyCarsContainer } from "./styles";
+import { Appointments, AppointmentsQuantity, AppointmentsTitle, Content, Header, MyCarsContainer, SubTitle, Title } from "./styles";
 
-export function MyCars() {
-  const [cars, setCars] = useState<CarDto[]>([])
+type MyCarsScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'MyCars'
+>;
+
+type MyCarsProps = NativeStackScreenProps<RootStackParamList, 'MyCars'>;
+
+interface CarProps {
+  car: CarDto;
+  user_id: string;
+  id: string
+}
+
+export function MyCars({ route }: MyCarsProps) {
+  const [cars, setCars] = useState<CarProps[]>([])
   const [loading, setLoading] = useState(true)
 
+  const theme = useTheme()
+
+  const { goBack, navigate } = useNavigation<MyCarsScreenNavigationProp>()
+
+  // const { } = route.params
+
+  function goBackPage() {
+    goBack()
+  }
 
   async function fetchCars() {
     try {
@@ -24,7 +53,39 @@ export function MyCars() {
   }, [])
   return (
     <MyCarsContainer>
+      <StatusBar
+        backgroundColor='transparent'
+        translucent
+        barStyle="light-content"
+      />
+      <Header>
+        <BackButton color="white" onPress={goBackPage} />
+        <Title>
+          Seus agendamentos,{'\n'}
+          estão aqui.
+        </Title>
+        <SubTitle>
+          Conforto, segurança e praticidade.
+        </SubTitle>
 
+
+      </Header>
+
+      <Content>
+        <Appointments>
+          <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+          <AppointmentsQuantity>10</AppointmentsQuantity>
+        </Appointments>
+
+        <FlatList
+          data={cars}
+          keyExtractor={item => item.id}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Car data={item.car} />
+          )}
+        />
+      </Content>
     </MyCarsContainer>
   )
 }

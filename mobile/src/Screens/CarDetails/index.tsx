@@ -17,8 +17,6 @@ type CarDetailsScreenNavigationProp = NativeStackNavigationProp<
 type CarDetailsProps = NativeStackScreenProps<RootStackParamList, 'CarDetails'>;
 
 
-
-
 export function CarDetails({ route }: CarDetailsProps) {
   const { goBack, navigate } = useNavigation<CarDetailsScreenNavigationProp>()
 
