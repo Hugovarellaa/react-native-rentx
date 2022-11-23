@@ -9,7 +9,10 @@ import { Car } from "../../Components/Car/inde";
 import { Loading } from "../../Components/Loading";
 import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
-import { CarList, Header, HeaderWrapper, HomeContainer, TotalCar } from "./styles";
+import { CarList, Header, HeaderWrapper, HomeContainer, MyCarButton, TotalCar } from "./styles";
+
+import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from "styled-components";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,10 +24,15 @@ export function Home() {
   const [loading, setLoading] = useState(true)
 
   const navigation = useNavigation<HomeScreenNavigationProp>();
-
+  const theme = useTheme()
 
   function handleNextPage(car: CarDto) {
     navigation.navigate('CarDetails', { car })
+  }
+
+  function handleOpenMyCarPage() {
+    navigation.navigate('MyCars')
+
   }
 
   async function fetchCar() {
@@ -68,6 +76,15 @@ export function Home() {
             />
           )
       }
+
+      <MyCarButton onPress={handleOpenMyCarPage}>
+        <Ionicons
+          name='ios-car-sport'
+          size={32}
+          color={theme.colors.shape}
+        />
+
+      </MyCarButton>
 
     </HomeContainer>
   )

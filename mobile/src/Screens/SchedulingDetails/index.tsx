@@ -52,7 +52,6 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
 
   const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
   const { car, dates } = route.params
-  console.log(car.id)
   const rentalTotal = Number(dates.length * car.rent.price)
 
   function goBackPage() {
