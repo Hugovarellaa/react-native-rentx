@@ -48,6 +48,7 @@ type SchedulingDetailsProps = NativeStackScreenProps<RootStackParamList, 'Schedu
 
 export function SchedulingDetails({ route }: SchedulingDetailsProps) {
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
+  const [loading, setLoading] = useState(false)
   const theme = useTheme()
 
   const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
@@ -59,6 +60,8 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
   }
 
   async function handleConfirmRent() {
+    setLoading(true)
+
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
 
     const unavailable_dates = [
@@ -78,8 +81,12 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
       unavailable_dates
     })
       .then(() => navigate('SchedulingCompleted'))
-      .catch(() => Alert.alert('Não foi possível realizar o agendamento'))
+      .catch(() => {
+        setLoading(false)
+        Alert.alert('Não foi possível realizar o agendamento')
+      })
   }
+
 
   useEffect(() => {
     setRentalPeriod({
@@ -150,7 +157,7 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color="green" onPress={handleConfirmRent} />
+        <Button title="Alugar agora" color="green" onPress={handleConfirmRent} loading={loading} disabled={loading} />
       </Footer>
 
     </CarDetailsContainer>

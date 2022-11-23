@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { format } from 'date-fns';
 import { useState } from "react";
-import { Alert, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { RootStackParamList } from "../../@types/navigation";
 import ArrowLeftSvg from '../../assets/arrow.svg';
 import { BackButton } from "../../Components/BackButton";
@@ -38,15 +38,10 @@ export function Scheduling({ route }: SchedulingProps) {
   }
 
   function handleNextPage() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert("Olá", 'Selecione o intervalo para alugar o carro')
-    } else {
-      navigate('SchedulingDetails', {
-        car,
-        dates: Object.keys(markedDates)
-      })
-
-    }
+    navigate('SchedulingDetails', {
+      car,
+      dates: Object.keys(markedDates)
+    })
   }
 
   function handleChangeDate(date: DayProps) {
@@ -106,7 +101,7 @@ export function Scheduling({ route }: SchedulingProps) {
       </Content>
 
       <Footer>
-        <Button title="Confirma" onPress={handleNextPage} />
+        <Button title="Confirma" onPress={handleNextPage} disabled={!rentalPeriod.startFormatted} />
       </Footer>
     </SchedulingContainer>
   )
