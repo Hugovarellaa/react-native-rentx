@@ -9,24 +9,24 @@ import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
 import { CarList, Header, HeaderWrapper, HomeContainer, TotalCar } from "./styles";
 
+interface NavigationProps {
+  navigate: (
+    screen: string,
+    carObject: {
+      car: CarDto
+    }
+  ) => void
+}
+
 export function Home() {
   const [cars, setCars] = useState<CarDto[]>([])
   const [loading, setLoading] = useState(true)
 
-  const carOne = {
-    brand: 'Lamborghini',
-    name: 'Huracan',
-    rent: {
-      period: 'Ao dia',
-      price: 580
-    },
-    thumbnail: 'https://www.pngarts.com/files/3/Lamborghini-Huracan-PNG-Download-Image.png'
-  }
+  const navigation = useNavigation<NavigationProps>();
 
-  const navigation = useNavigation()
 
-  function handleNextPage() {
-    navigation.navigate('CarDetails')
+  function handleNextPage(car: CarDto) {
+    navigation.navigate('CarDetails', { car })
   }
 
   async function fetchCar() {
@@ -66,7 +66,7 @@ export function Home() {
             <CarList
               data={cars}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <Car data={item} onPress={handleNextPage} />}
+              renderItem={({ item }) => <Car data={item} onPress={() => handleNextPage(item)} />}
             />
           )
       }
