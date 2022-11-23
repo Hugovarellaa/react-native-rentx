@@ -1,12 +1,25 @@
 import { StatusBar } from "react-native";
-import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { Extrapolate, interpolate, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { SplashContainer } from "./styles";
 
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect } from "react";
+import { RootStackParamList } from "../../@types/navigation";
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
 
+
+type SplashScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Splash'
+>;
+
+
 export function Splash() {
+
+  const { navigate } = useNavigation<SplashScreenNavigationProp>()
+
 
   const splashAnimation = useSharedValue(0)
 
@@ -46,11 +59,18 @@ export function Splash() {
     }
   })
 
+  function startApp() {
+    navigate('Home')
+  }
+
   useEffect(() => {
     splashAnimation.value = withTiming(
-      50,
-      { duration: 1000 }
+      50, { duration: 1000 }, () => {
+        'worklet'
+        runOnJS(startApp)()
+      }
     )
+
   }, [])
 
   return (
