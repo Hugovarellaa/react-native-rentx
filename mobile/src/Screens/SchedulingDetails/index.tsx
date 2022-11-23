@@ -24,10 +24,12 @@ import {
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
 import { RootStackParamList } from "../../@types/navigation";
 import { Button } from "../../Components/Button";
+import { api } from "../../services/axios/api";
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 import { getPlatformDate } from "../../utils/getPlataformDate";
 
@@ -45,19 +47,32 @@ type SchedulingDetailsProps = NativeStackScreenProps<RootStackParamList, 'Schedu
 
 
 export function SchedulingDetails({ route }: SchedulingDetailsProps) {
-  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>()
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>({} as RentalPeriod)
   const theme = useTheme()
 
   const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
   const { car, dates } = route.params
-
+  console.log(car.id)
+  const rentalTotal = Number(dates.length * car.rent.price)
 
   function goBackPage() {
     goBack()
   }
 
-  function handleNextPage() {
-    navigate('SchedulingCompleted')
+  async function handleConfirmRent() {
+    const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`)
+
+    const unavailable_dates = [
+      ...schedulesByCar.data.unavailable_dates,
+      ...dates
+    ]
+
+    api.put(`/schedules_bycars/${car.id}`, {
+      id: car.id,
+      unavailable_dates
+    })
+      .then(() => navigate('SchedulingCompleted'))
+      .catch(() => Alert.alert('Não foi possível realizar o agendamento'))
   }
 
   useEffect(() => {
@@ -112,7 +127,7 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
           <Feather name="chevron-right" size={RFValue(10)} color={theme.colors.text} />
 
           <DateInfo>
-            <DateTitle>De</DateTitle>
+            <DateTitle>ATÉ</DateTitle>
             <DateValue>{rentalPeriod.endFormatted}</DateValue>
           </DateInfo>
 
@@ -121,15 +136,15 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
         <RentalPrice>
           <RentalPriceLabel>Total</RentalPriceLabel>
           <RentalPriceDetails>
-            <RentalPriceQuota>R$ 580 x 3</RentalPriceQuota>
-            <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+            <RentalPriceQuota>{`R$ ${car.rent.price} x ${dates.length}`}</RentalPriceQuota>
+            <RentalPriceTotal>R$ {rentalTotal}</RentalPriceTotal>
           </RentalPriceDetails>
         </RentalPrice>
 
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color="green" onPress={handleNextPage} />
+        <Button title="Alugar agora" color="green" onPress={handleConfirmRent} />
       </Footer>
 
     </CarDetailsContainer>
