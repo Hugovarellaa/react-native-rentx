@@ -22,13 +22,19 @@ import {
 } from "./styles";
 
 import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { format } from 'date-fns';
+import { useEffect, useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
 import { RootStackParamList } from "../../@types/navigation";
-
 import { Button } from "../../Components/Button";
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
+import { getPlatformDate } from "../../utils/getPlataformDate";
 
+interface RentalPeriod {
+  startFormatted: string;
+  endFormatted: string;
+}
 
 type SchedulingScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -39,6 +45,7 @@ type SchedulingDetailsProps = NativeStackScreenProps<RootStackParamList, 'Schedu
 
 
 export function SchedulingDetails({ route }: SchedulingDetailsProps) {
+  const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>()
   const theme = useTheme()
 
   const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
@@ -52,6 +59,13 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
   function handleNextPage() {
     navigate('SchedulingCompleted')
   }
+
+  useEffect(() => {
+    setRentalPeriod({
+      startFormatted: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
+      endFormatted: format(getPlatformDate(new Date(dates[dates.length - 1])), 'dd/MM/yyyy'),
+    })
+  }, [])
 
   return (
     <CarDetailsContainer>
@@ -92,14 +106,14 @@ export function SchedulingDetails({ route }: SchedulingDetailsProps) {
 
           <DateInfo>
             <DateTitle>De</DateTitle>
-            <DateValue>22/11/2022</DateValue>
+            <DateValue>{rentalPeriod.startFormatted}</DateValue>
           </DateInfo>
 
           <Feather name="chevron-right" size={RFValue(10)} color={theme.colors.text} />
 
           <DateInfo>
             <DateTitle>De</DateTitle>
-            <DateValue>22/11/2022</DateValue>
+            <DateValue>{rentalPeriod.endFormatted}</DateValue>
           </DateInfo>
 
         </RentalPeriod>
