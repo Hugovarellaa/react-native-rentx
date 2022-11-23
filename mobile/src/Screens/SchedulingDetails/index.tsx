@@ -21,8 +21,10 @@ import {
   RentalPriceTotal
 } from "./styles";
 
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
+import { RootStackParamList } from "../../@types/navigation";
 import AccelerationSvg from "../../assets/acceleration.svg";
 import ExchangeSvg from "../../assets/exchange.svg";
 import ForceSvg from "../../assets/force.svg";
@@ -32,17 +34,27 @@ import SpeedSvg from "../../assets/speed.svg";
 import { Button } from "../../Components/Button";
 
 
-export function SchedulingDetails() {
+type SchedulingScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SchedulingDetails'
+>;
+
+type SchedulingDetailsProps = NativeStackScreenProps<RootStackParamList, 'SchedulingDetails'>;
+
+
+export function SchedulingDetails({ route }: SchedulingDetailsProps) {
   const theme = useTheme()
 
-  const navigation = useNavigation()
+  const { goBack, navigate } = useNavigation<SchedulingScreenNavigationProp>()
+  const { car, dates } = route.params
 
-  function goBack() {
-    navigation.goBack()
+
+  function goBackPage() {
+    goBack()
   }
 
   function handleNextPage() {
-    navigation.navigate('SchedulingCompleted')
+    navigate('SchedulingCompleted')
   }
 
   return (

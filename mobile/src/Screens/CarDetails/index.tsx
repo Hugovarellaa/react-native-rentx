@@ -1,38 +1,43 @@
-import { useNavigation } from "@react-navigation/native";
 import { Accessory } from "../../Components/Accessory";
 import { BackButton } from "../../Components/BackButton";
 import { ImageSlider } from "../../Components/ImageSlider";
 import { About, AccessoryWrapper, Brand, CarDetailsContainer, CarImages, Content, Description, Details, Footer, Header, Name, Period, Price, Rent } from "./styles";
 
-import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../@types/navigation";
 import { Button } from "../../Components/Button";
-import { CarDto } from "../../dtos/CarDto";
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 
-type ParamList = {
-  car: CarDto
-};
+type CarDetailsScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'CarDetails'
+>;
+
+type CarDetailsProps = NativeStackScreenProps<RootStackParamList, 'CarDetails'>;
 
 
-export function CarDetails() {
-  const navigation = useNavigation()
-
-  const routes = useRoute()
-  const { car } = routes.params as ParamList
 
 
-  function goBack() {
-    navigation.goBack()
+export function CarDetails({ route }: CarDetailsProps) {
+  const { goBack, navigate } = useNavigation<CarDetailsScreenNavigationProp>()
+
+  const { car } = route.params
+
+  function goBackPage() {
+    goBack()
   }
 
   function handleNextPage() {
-    navigation.navigate('Scheduling')
+    navigate('Scheduling', {
+      car
+    })
   }
 
   return (
     <CarDetailsContainer>
       <Header>
-        <BackButton color="gray" onPress={goBack} />
+        <BackButton color="gray" onPress={goBackPage} />
       </Header>
       <CarImages>
         <ImageSlider

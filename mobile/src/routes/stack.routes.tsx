@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../@types/navigation'
 import { CarDetails } from '../Screens/CarDetails'
 import { Home } from '../Screens/Home'
 import { Scheduling } from '../Screens/Scheduling'
 import { SchedulingCompleted } from '../Screens/SchedulingCompleted'
 import { SchedulingDetails } from '../Screens/SchedulingDetails'
 
-const { Navigator, Screen } = createNativeStackNavigator()
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
 export function StackRoutes() {
   return (

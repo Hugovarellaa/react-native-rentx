@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { Alert, StatusBar } from "react-native";
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RootStackParamList } from "../../@types/navigation";
 import LogoSvg from '../../assets/logo.svg';
 import { Car } from "../../Components/Car/inde";
 import { Loading } from "../../Components/Loading";
@@ -9,20 +11,16 @@ import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
 import { CarList, Header, HeaderWrapper, HomeContainer, TotalCar } from "./styles";
 
-interface NavigationProps {
-  navigate: (
-    screen: string,
-    carObject: {
-      car: CarDto
-    }
-  ) => void
-}
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
 
 export function Home() {
   const [cars, setCars] = useState<CarDto[]>([])
   const [loading, setLoading] = useState(true)
 
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useNavigation<HomeScreenNavigationProp>();
 
 
   function handleNextPage(car: CarDto) {
