@@ -25,7 +25,6 @@ export function Splash() {
           ),
         }
       ],
-      position: 'absolute',
     }
   })
 
@@ -44,14 +43,13 @@ export function Splash() {
           ),
         }
       ],
-      position: 'absolute',
     }
   })
 
   useEffect(() => {
     splashAnimation.value = withTiming(
       50,
-      { duration: 3000 }
+      { duration: 1000 }
     )
   }, [])
 
@@ -63,10 +61,10 @@ export function Splash() {
         barStyle="light-content"
       />
 
-      <Animated.View style={brandStyle}>
+      <Animated.View style={[brandStyle, { position: "absolute" }]}>
         <BrandSvg width={80} height={50} />
       </Animated.View>
-      <Animated.View style={logoStyle}>
+      <Animated.View style={[logoStyle, { position: "absolute" }]}>
         <LogoSvg width={180} height={20} />
       </Animated.View>
 
