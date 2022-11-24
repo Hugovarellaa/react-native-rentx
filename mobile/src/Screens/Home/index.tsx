@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { Alert, StatusBar, StyleSheet } from "react-native";
+import { Alert, BackHandler, StatusBar, StyleSheet } from "react-native";
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RootStackParamList } from "../../@types/navigation";
@@ -83,6 +83,13 @@ export function Home() {
   useEffect(() => {
     fetchCar()
   }, [])
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true
+    })
+  })
+
   return (
     <HomeContainer>
       <StatusBar
@@ -94,7 +101,16 @@ export function Home() {
       <Header>
         <HeaderWrapper>
           <LogoSvg width={RFValue(108)} height={RFValue(12)} />
-          <TotalCar>Total de {cars.length} Carros</TotalCar>
+
+          {
+            !loading && (
+              <TotalCar>
+                Total de {cars.length} Carros
+              </TotalCar>
+            )
+          }
+
+
         </HeaderWrapper>
       </Header>
 
