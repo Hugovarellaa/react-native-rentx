@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { Alert, StatusBar, StyleSheet } from "react-native";
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RootStackParamList } from "../../@types/navigation";
 import LogoSvg from '../../assets/logo.svg';
@@ -51,7 +51,10 @@ export function Home() {
       positionX.value = event.translationX + ctx.positionX
       positionY.value = event.translationY + ctx.positionY
     },
-    onEnd() { }
+    onEnd() {
+      positionX.value = withSpring(0)
+      positionY.value = withSpring(0)
+    }
 
   })
 
