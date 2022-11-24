@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 export const CarContainer = styled(TouchableOpacity)`
   width: 100%;
   height: 126px;
+  /* height: 156px; ideal no meu celular*/
 
   background-color: ${({ theme }) => theme.colors.background_secondary};
  
@@ -16,7 +17,8 @@ export const CarContainer = styled(TouchableOpacity)`
   margin-bottom: 16px;
 `
 
-export const Details = styled.View``
+export const Details = styled.View`
+`
 
 export const Brand = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_500};
