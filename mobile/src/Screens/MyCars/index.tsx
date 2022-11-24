@@ -7,7 +7,7 @@ import { useTheme } from "styled-components";
 import { RootStackParamList } from "../../@types/navigation";
 import { BackButton } from "../../Components/BackButton";
 import { Car } from "../../Components/Car/inde";
-import { Loading } from '../../Components/Loading';
+import { LoadingAnimation } from '../../Components/LoadingAnimation';
 import { CarDto } from "../../dtos/CarDto";
 import { api } from "../../services/axios/api";
 import { Appointments, AppointmentsQuantity, AppointmentsTitle, CarFooter, CarFooterDate, CarFooterPeriod, CarFooterTitle, CarWrapper, Content, Header, MyCarsContainer, SubTitle, Title } from "./styles";
@@ -77,7 +77,7 @@ export function MyCars({ route }: MyCarsProps) {
       {
         loading
           ? (
-            <Loading />
+            <LoadingAnimation />
           )
           : (
             <Content>
