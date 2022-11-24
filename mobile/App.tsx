@@ -1,7 +1,8 @@
-
 import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from '@expo-google-fonts/archivo';
 import { Inter_400Regular, Inter_500Medium, useFonts } from '@expo-google-fonts/inter';
 import React from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import { ThemeProvider } from 'styled-components';
 import { Loading } from './src/Components/Loading';
 import { AppRoutes } from './src/routes';
@@ -15,10 +16,14 @@ export default function App() {
   })
 
   return (
-    <ThemeProvider theme={theme}>
-      {
-        isLoading ? <AppRoutes /> : <Loading />
-      }
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+
+      <ThemeProvider theme={theme}>
+        {
+          isLoading ? <AppRoutes /> : <Loading />
+        }
+      </ThemeProvider>
+    </GestureHandlerRootView>
+
   )
 }

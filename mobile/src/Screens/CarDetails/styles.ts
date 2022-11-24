@@ -1,4 +1,3 @@
-import { ScrollView } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
@@ -18,17 +17,6 @@ export const Header = styled.View`
   margin-left: 24px;
 `
 
-export const CarImages = styled.View`
-  margin-top: ${getStatusBarHeight() + 32}px;
-`
-
-export const Content = styled(ScrollView).attrs({
-  showsVerticalScrollIndicator: false,
-  contentContainerStyle: {
-    padding: 22,
-    alignItems: 'center'
-  }
-})``
 
 export const Details = styled.View`
   width: 100%;
@@ -96,6 +84,6 @@ export const AccessoryWrapper = styled.View`
 
 export const Footer = styled.View`
   width: 100%;
-  background-color: ${({theme}) => theme.colors.background_secondary};
+  background-color: ${({ theme }) => theme.colors.background_secondary};
   padding: 24px 24px ${getStatusBarHeight() + 24}px
 `
